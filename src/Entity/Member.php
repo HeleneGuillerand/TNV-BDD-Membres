@@ -179,6 +179,11 @@ class Member
      */
     private $ratesFFT;
 
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $title;
+
     public function __construct()
     {
         $this->boxes = new ArrayCollection();
@@ -613,6 +618,18 @@ class Member
     public function removeRatesFFT(RateFFT $ratesFFT): self
     {
         $this->ratesFFT->removeElement($ratesFFT);
+
+        return $this;
+    }
+
+    public function getTitle(): ?int
+    {
+        return $this->title;
+    }
+
+    public function setTitle(int $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }
