@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MemberRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -161,6 +163,28 @@ class Member
      * @ORM\Column(type="string", length=500, nullable=true)
      */
     private $note;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Box::class, mappedBy="member")
+     */
+    private $boxes;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Peculiarity::class, inversedBy="members")
+     */
+    private $peculiarities;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=RateFFT::class, inversedBy="members")
+     */
+    private $ratesFFT;
+
+    public function __construct()
+    {
+        $this->boxes = new ArrayCollection();
+        $this->peculiarities = new ArrayCollection();
+        $this->ratesFFT = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -511,6 +535,84 @@ class Member
     public function setNote(?string $note): self
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Box>
+     */
+    public function getBoxes(): Collection
+    {
+        return $this->boxes;
+    }
+
+    public function addBox(Box $box): self
+    {
+        if (!$this->boxes->contains($box)) {
+            $this->boxes[] = $box;
+            $box->setMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBox(Box $box): self
+    {
+        if ($this->boxes->removeElement($box)) {
+            // set the owning side to null (unless already changed)
+            if ($box->getMember() === $this) {
+                $box->setMember(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Peculiarity>
+     */
+    public function getPeculiarities(): Collection
+    {
+        return $this->peculiarities;
+    }
+
+    public function addPeculiarity(Peculiarity $peculiarity): self
+    {
+        if (!$this->peculiarities->contains($peculiarity)) {
+            $this->peculiarities[] = $peculiarity;
+        }
+
+        return $this;
+    }
+
+    public function removePeculiarity(Peculiarity $peculiarity): self
+    {
+        $this->peculiarities->removeElement($peculiarity);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RateFFT>
+     */
+    public function getRatesFFT(): Collection
+    {
+        return $this->ratesFFT;
+    }
+
+    public function addRatesFFT(RateFFT $ratesFFT): self
+    {
+        if (!$this->ratesFFT->contains($ratesFFT)) {
+            $this->ratesFFT[] = $ratesFFT;
+        }
+
+        return $this;
+    }
+
+    public function removeRatesFFT(RateFFT $ratesFFT): self
+    {
+        $this->ratesFFT->removeElement($ratesFFT);
 
         return $this;
     }
