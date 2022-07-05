@@ -5,3 +5,21 @@ nav img{
     background-color:aliceblue;
 
 }
+body {
+    color: white;
+}
+
+.home{
+    padding-top: 4em;
+}
+
+.members-recap{
+    width: 30%;
+}
+
+.search{
+    width: 50%;
+}
+nav ul{
+    margin:auto;
+}

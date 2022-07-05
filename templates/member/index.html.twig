@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Member index{% endblock %}
+
+{% block body %}
+    <h1>Member index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lastname</th>
+                <th>Firstname</th>
+                <th>Picture</th>
+                <th>DateOfBirth</th>
+                <th>PlaceOfBirth</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>FirstEmail</th>
+                <th>SecondEmail</th>
+                <th>Sponsor</th>
+                <th>Job</th>
+                <th>PouvoirAg</th>
+                <th>Donation</th>
+                <th>TotalPayed</th>
+                <th>UpdatedAt</th>
+                <th>FirstRegisteration</th>
+                <th>FftNumber</th>
+                <th>FftaNumber</th>
+                <th>FftpmNumber</th>
+                <th>LastKnownSeason</th>
+                <th>Attestation</th>
+                <th>SecondClub</th>
+                <th>Status</th>
+                <th>Note</th>
+                <th>Title</th>
+                <th>IsRegistered</th>
+                <th>FirstPhone</th>
+                <th>SecondPhone</th>
+                <th>MobilePhone</th>
+                <th>Zipcode</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for member in members %}
+            <tr>
+                <td>{{ member.id }}</td>
+                <td>{{ member.lastname }}</td>
+                <td>{{ member.firstname }}</td>
+                <td>{{ member.picture }}</td>
+                <td>{{ member.dateOfBirth ? member.dateOfBirth|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ member.placeOfBirth }}</td>
+                <td>{{ member.address }}</td>
+                <td>{{ member.city }}</td>
+                <td>{{ member.firstEmail }}</td>
+                <td>{{ member.secondEmail }}</td>
+                <td>{{ member.Sponsor }}</td>
+                <td>{{ member.job }}</td>
+                <td>{{ member.pouvoirAg ? 'Yes' : 'No' }}</td>
+                <td>{{ member.donation }}</td>
+                <td>{{ member.totalPayed }}</td>
+                <td>{{ member.updatedAt ? member.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ member.firstRegisteration ? member.firstRegisteration|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ member.fftNumber }}</td>
+                <td>{{ member.fftaNumber }}</td>
+                <td>{{ member.fftpmNumber }}</td>
+                <td>{{ member.lastKnownSeason }}</td>
+                <td>{{ member.attestation ? 'Yes' : 'No' }}</td>
+                <td>{{ member.secondClub }}</td>
+                <td>{{ member.status }}</td>
+                <td>{{ member.note }}</td>
+                <td>{{ member.title }}</td>
+                <td>{{ member.isRegistered ? 'Yes' : 'No' }}</td>
+                <td>{{ member.firstPhone }}</td>
+                <td>{{ member.secondPhone }}</td>
+                <td>{{ member.mobilePhone }}</td>
+                <td>{{ member.zipcode }}</td>
+                <td>
+                    <a href="{{ path('app_member_show', {'id': member.id}) }}">show</a>
+                    <a href="{{ path('app_member_edit', {'id': member.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="32">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_member_new') }}">Create new</a>
+{% endblock %}

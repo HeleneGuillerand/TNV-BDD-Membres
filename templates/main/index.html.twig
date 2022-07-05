@@ -4,6 +4,51 @@
 
 {% block body %}
 <h2>Bienvenue dans la base de donnée du Tir National de Versailles</h2>
+<div class="d-flex justify-content-between home">
+    <section class="members-recap">
+    <table class="table table-dark">
+            <tbody>
+                <tr>
+                    <th>Membres</th>
+                    <td>123456</td>
+                </tr>
+                <tr>
+                    <th>Nouveaux</th>
+                    <td>125</td>
+                </tr>
+                <tr>
+                    <th>Sortis</th>
+                    <td>34</td>
+                </tr>
+                <tr>
+                    <th>Non renouvelés</th>
+                    <td>125</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="search">
+        <form class="d-flex mb-2" role="search">
+            <input class="form-control me-2" type="search" placeholder="Nom" aria-label="Search">          
+            <button class="btn btn-success" type="submit">Search</button>
+        </form>
+        <form class="d-flex mb-2" role="search">
+            <input class="form-control me-2" type="search" placeholder="Année de Naissance" aria-label="Search">          
+            <button class="btn btn-success" type="submit">Search</button>
+        </form>
+        <form class="d-flex mb-2" role="search">
+            <input class="form-control me-2" type="search" placeholder="Année d'inscription" aria-label="Search">          
+            <button class="btn btn-success" type="submit">Search</button>
+        </form>
+        <form class="d-flex mb-2" role="search">
+            <input class="form-control me-2" type="search" placeholder="N° FFT" aria-label="Search">          
+            <button class="btn btn-success" type="submit">Search</button>
+        </form>
+    
+    
+    </section>
+</div>
+    
 
 
 {% endblock %}
