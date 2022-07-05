@@ -76,7 +76,7 @@ class AppFixtures extends Fixture
         }
         //*Members
         //on créé 300 membres
-        for($j = 1; $j <= 300; $j ++){
+        for($j = 1; $j <= 600; $j++){
             //on créé un nouvel objet
             $member = new Member();
             //on le remplit
@@ -87,17 +87,17 @@ class AppFixtures extends Fixture
             $member->setDateOfBirth(new DateTimeImmutable('-' . mt_rand(8, 70) . ' years'));
             $member->setPlaceOfBirth($faker->city());
             $member->setAddress($faker->departmentName());
-            $member->setZipcode($faker->numberBetween(0, 6));
+            $member->setZipcode($faker->numberBetween(10000, 99999));
             $member->setCity($faker->city());
-            //$member->setFirstPhone($faker->numberBetween(1000000000, 9999999999));
-            //$member->setMobilePhone($faker->numberBetween(1000000000, 9999999999));
+            $member->setFirstPhone($faker->numberBetween(1000000000, 9999999999));
+            $member->setMobilePhone($faker->numberBetween(1000000000, 9999999999));
             $member->setFirstEmail($faker->email());
             $member->setSponsor($faker->name());
             $member->setPouvoirAg($faker->boolean());
             $member->setAttestation($faker->boolean());
-            $member->setRegisteredAt(new DateTimeImmutable('-' . mt_rand(0, 12) . ' months'));
+            $member->setIsRegistered($faker->boolean());
             $member->setFirstRegisteration(new DateTimeImmutable('-' . mt_rand(0, 60) . ' years'));
-            //$member->setFftNumber($faker->numberBetween(10000000, 99999999));
+            $member->setFftNumber($faker->numberBetween(10000000, 99999999));
             $member->setStatus($faker->numberBetween(1,3));
             //on défini un tarif en fonction de l'age 
             $SeniorLimit = new DateTimeImmutable('-' . 25 . ' years');

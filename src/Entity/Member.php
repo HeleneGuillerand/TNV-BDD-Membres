@@ -49,30 +49,12 @@ class Member
      */
     private $address;
 
-    /**
-     * @ORM\Column(type="smallint")
-     */
-    private $zipcode;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $city;
 
-    /**
-     * @ORM\Column(type="smallint", nullable=true)
-     */
-    private $firstPhone;
-
-    /**
-     * @ORM\Column(type="smallint", nullable=true)
-     */
-    private $secondPhone;
-
-    /**
-     * @ORM\Column(type="smallint", nullable=true)
-     */
-    private $mobilePhone;
 
     /**
      * @ORM\Column(type="string", length=400)
@@ -108,11 +90,6 @@ class Member
      * @ORM\Column(type="smallint", nullable=true)
      */
     private $totalPayed;
-
-    /**
-     * @ORM\Column(type="datetime_immutable")
-     */
-    private $registeredAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
@@ -183,6 +160,35 @@ class Member
      * @ORM\Column(type="smallint")
      */
     private $title;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isRegistered;
+
+    /**
+     * @ORM\Column(type="bigint", nullable=true)
+     */
+    private $firstPhone;
+
+    /**
+     * @ORM\Column(type="bigint", nullable=true)
+     */
+    private $secondPhone;
+
+    /**
+     * @ORM\Column(type="bigint", nullable=true)
+     */
+    private $mobilePhone;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $zipcode;
+
+   
+
+
 
     public function __construct()
     {
@@ -268,17 +274,6 @@ class Member
         return $this;
     }
 
-    public function getZipcode(): ?int
-    {
-        return $this->zipcode;
-    }
-
-    public function setZipcode(int $zipcode): self
-    {
-        $this->zipcode = $zipcode;
-
-        return $this;
-    }
 
     public function getCity(): ?string
     {
@@ -292,41 +287,7 @@ class Member
         return $this;
     }
 
-    public function getFirstPhone(): ?int
-    {
-        return $this->firstPhone;
-    }
 
-    public function setFirstPhone(?int $firstPhone): self
-    {
-        $this->firstPhone = $firstPhone;
-
-        return $this;
-    }
-
-    public function getSecondPhone(): ?int
-    {
-        return $this->secondPhone;
-    }
-
-    public function setSecondPhone(?int $secondPhone): self
-    {
-        $this->secondPhone = $secondPhone;
-
-        return $this;
-    }
-
-    public function getMobilePhone(): ?int
-    {
-        return $this->mobilePhone;
-    }
-
-    public function setMobilePhone(?int $mobilePhone): self
-    {
-        $this->mobilePhone = $mobilePhone;
-
-        return $this;
-    }
 
     public function getFirstEmail(): ?string
     {
@@ -630,6 +591,66 @@ class Member
     public function setTitle(int $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function isIsRegistered(): ?bool
+    {
+        return $this->isRegistered;
+    }
+
+    public function setIsRegistered(bool $isRegistered): self
+    {
+        $this->isRegistered = $isRegistered;
+
+        return $this;
+    }
+
+    public function getFirstPhone(): ?string
+    {
+        return $this->firstPhone;
+    }
+
+    public function setFirstPhone(?string $firstPhone): self
+    {
+        $this->firstPhone = $firstPhone;
+
+        return $this;
+    }
+
+    public function getSecondPhone(): ?string
+    {
+        return $this->secondPhone;
+    }
+
+    public function setSecondPhone(?string $secondPhone): self
+    {
+        $this->secondPhone = $secondPhone;
+
+        return $this;
+    }
+
+    public function getMobilePhone(): ?string
+    {
+        return $this->mobilePhone;
+    }
+
+    public function setMobilePhone(?string $mobilePhone): self
+    {
+        $this->mobilePhone = $mobilePhone;
+
+        return $this;
+    }
+
+    public function getZipcode(): ?int
+    {
+        return $this->zipcode;
+    }
+
+    public function setZipcode(?int $zipcode): self
+    {
+        $this->zipcode = $zipcode;
 
         return $this;
     }
