@@ -3,140 +3,147 @@
 {% block title %}Member{% endblock %}
 
 {% block body %}
+    <a href="{{ path('app_member_index') }}" class="btn btn-primary float-end m-2">Retour</a>
+    <a href="{{ path('app_member_edit', {'id': member.id}) }}" class="btn btn-sm btn-warning float-end m-2">
+        <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+    </a>
     <h1>Member</h1>
+    <div class="member-container mt-5 d-flex">
+        <div><img src="{{ member.picture}}"></div>
+        <table class="table table-dark m-5">
+            <tbody>
+                <tr>
+                    <th>Raison sociale</th>
+                    <td>{{ (member.title == 1) ? 'Monsieur' : 'Madame' }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ member.lastname }}</td>
+                </tr>
+                {% if (member.maidenName)%}
+                    <tr>
+                        <th>Nom de jeune fille</th>
+                        <td>{{ member.maidenName }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Prénom</th>
+                    <td>{{ member.firstname }}</td>
+                </tr>
+                <tr>
+                    <th>Date de naissance</th>
+                    <td>{{ member.dateOfBirth ? member.dateOfBirth|date('d-m-Y') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Lieu de naissance</th>
+                    <td>{{ member.placeOfBirth }}</td>
+                </tr>
+                <tr>
+                    <th>Adresse</th>
+                    <td>{{ member.address }}</td>
+                </tr>
+                <tr>
+                    <th>Code postal</th>
+                    <td>{{ member.zipcode }}</td>
+                </tr>
+                <tr>
+                    <th>Ville</th>
+                    <td>{{ member.city }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ member.firstEmail }}</td>
+                </tr>
+                {% if (member.secondEmail) %}
+                    <tr>
+                        <th>Email 2</th>
+                        <td>{{ member.secondEmail }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Sponsor</th>
+                    <td>{{ member.Sponsor }}</td>
+                </tr>
+                <tr>
+                    <th>Travail</th>
+                    <td>{{ member.job }}</td>
+                </tr>
+                <tr>
+                    <th>PouvoirAg</th>
+                    <td>{{ member.pouvoirAg ? 'Yes' : 'No' }}</td>
+                </tr>
+                <tr>
+                    <th>Donation</th>
+                    <td>{{ member.donation }}</td>
+                </tr>
+                <tr>
+                    <th>Total payé</th>
+                    <td>{{ member.totalPayed }}</td>
+                </tr>
+                <tr>
+                    <th>Modifié le</th>
+                    <td>{{ member.updatedAt ? member.updatedAt|date('d-m-Y H:i:s') : '-' }}</td>
+                </tr>
+                <tr>
+                    <th>Membre depuis</th>
+                    <td>{{ member.firstRegisteration ? member.firstRegisteration|date('d-m-Y') : '' }}</td>
+                </tr>
+                {% if (member.fftNumber) %}
+                    <tr>
+                        <th>N° Fft</th>
+                        <td>{{ member.fftNumber }}</td>
+                    </tr>
+                {% endif %}
+                {% if (member.fftaNumber) %}
+                    <tr>
+                        <th>N° Ffta</th>
+                        <td>{{ member.fftaNumber }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Dernière saison</th>
+                    <td>{{ member.lastKnownSeason }}</td>
+                </tr>
+                <tr>
+                    <th>Attestation</th>
+                    <td>{{ member.attestation ? 'Yes' : 'No' }}</td>
+                </tr>
+                <tr>
+                    <th>Second Club</th>
+                    <td>{{ member.secondClub }}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>{{ member.status }}</td>
+                </tr>
+                {% if (member.note) %}
+                    <tr>
+                        <th>Note</th>
+                        <td>{{ member.note }}</td>
+                    </tr>
+                {% endif %}
+                
+                <tr>
+                    <th>A payé</th>
+                    <td>{{ member.isRegistered ? 'Oui' : 'Non' }}</td>
+                </tr>
+                <tr>
+                    <th>Téléphone</th>
+                    <td>{{ member.firstPhone }}</td>
+                </tr>
+                {% if (member.secondPhone) %}
+                    <tr>
+                        <th>Téléphone 2</th>
+                        <td>{{ member.secondPhone }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Mobile</th>
+                    <td>{{ member.mobilePhone }}</td>
+                </tr>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ member.id }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ member.lastname }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ member.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ member.picture }}</td>
-            </tr>
-            <tr>
-                <th>DateOfBirth</th>
-                <td>{{ member.dateOfBirth ? member.dateOfBirth|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>PlaceOfBirth</th>
-                <td>{{ member.placeOfBirth }}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>{{ member.address }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ member.city }}</td>
-            </tr>
-            <tr>
-                <th>FirstEmail</th>
-                <td>{{ member.firstEmail }}</td>
-            </tr>
-            <tr>
-                <th>SecondEmail</th>
-                <td>{{ member.secondEmail }}</td>
-            </tr>
-            <tr>
-                <th>Sponsor</th>
-                <td>{{ member.Sponsor }}</td>
-            </tr>
-            <tr>
-                <th>Job</th>
-                <td>{{ member.job }}</td>
-            </tr>
-            <tr>
-                <th>PouvoirAg</th>
-                <td>{{ member.pouvoirAg ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Donation</th>
-                <td>{{ member.donation }}</td>
-            </tr>
-            <tr>
-                <th>TotalPayed</th>
-                <td>{{ member.totalPayed }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ member.updatedAt ? member.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>FirstRegisteration</th>
-                <td>{{ member.firstRegisteration ? member.firstRegisteration|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>FftNumber</th>
-                <td>{{ member.fftNumber }}</td>
-            </tr>
-            <tr>
-                <th>FftaNumber</th>
-                <td>{{ member.fftaNumber }}</td>
-            </tr>
-            <tr>
-                <th>FftpmNumber</th>
-                <td>{{ member.fftpmNumber }}</td>
-            </tr>
-            <tr>
-                <th>LastKnownSeason</th>
-                <td>{{ member.lastKnownSeason }}</td>
-            </tr>
-            <tr>
-                <th>Attestation</th>
-                <td>{{ member.attestation ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>SecondClub</th>
-                <td>{{ member.secondClub }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ member.status }}</td>
-            </tr>
-            <tr>
-                <th>Note</th>
-                <td>{{ member.note }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ member.title }}</td>
-            </tr>
-            <tr>
-                <th>IsRegistered</th>
-                <td>{{ member.isRegistered ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>FirstPhone</th>
-                <td>{{ member.firstPhone }}</td>
-            </tr>
-            <tr>
-                <th>SecondPhone</th>
-                <td>{{ member.secondPhone }}</td>
-            </tr>
-            <tr>
-                <th>MobilePhone</th>
-                <td>{{ member.mobilePhone }}</td>
-            </tr>
-            <tr>
-                <th>Zipcode</th>
-                <td>{{ member.zipcode }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_member_index') }}">back to list</a>
-
-    <a href="{{ path('app_member_edit', {'id': member.id}) }}">edit</a>
-
+            </tbody>
+        </table>
+    </div>
     {{ include('member/_delete_form.html.twig') }}
 {% endblock %}
