@@ -76,7 +76,8 @@ class MemberController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $memberRepository->add($member, true);
-
+            //set updatedAt
+            
             return $this->redirectToRoute('app_member_index', [], Response::HTTP_SEE_OTHER);
         }
 

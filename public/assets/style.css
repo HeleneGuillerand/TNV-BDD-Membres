@@ -32,7 +32,9 @@ nav ul li {
 }
 
 .form-control {
-    border-width: 2px; border-color: grey;
+    border-width: 2px; 
+    border-color: grey;
+    
 }   
 
 .badge-pill {

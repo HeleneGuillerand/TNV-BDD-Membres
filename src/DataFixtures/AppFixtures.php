@@ -103,6 +103,7 @@ class AppFixtures extends Fixture
             $member->setPouvoirAg($faker->boolean());
             $member->setAttestation($faker->boolean());
             $member->setIsRegistered($faker->boolean());
+            $member->setSecondClub($faker->boolean());
             $member->setFirstRegisteration(new DateTimeImmutable('-' . mt_rand(0, 60) . ' years'));
             $member->setFftNumber($faker->numberBetween(10000000, 99999999));
             $member->setStatus($faker->numberBetween(1,3));
