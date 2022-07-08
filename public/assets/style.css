@@ -1,6 +1,6 @@
 
 nav img{
-    width: 100px;
+    width: 75px;
     border-radius: 50%;
     background-color:aliceblue;
 
@@ -22,4 +22,19 @@ body {
 }
 nav ul{
     margin:auto;
+}
+nav ul li {
+    font-size: 1.3em;
+}
+
+.form-control:valid {
+    background-color:  #212529!important;
+}
+
+.form-control {
+    border-width: 2px; border-color: grey;
+}   
+
+.badge-pill {
+    border-radius: 10px!important;
 }

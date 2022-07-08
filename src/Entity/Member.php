@@ -186,6 +186,11 @@ class Member
      */
     private $zipcode;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $maidenName;
+
    
 
 
@@ -651,6 +656,18 @@ class Member
     public function setZipcode(?int $zipcode): self
     {
         $this->zipcode = $zipcode;
+
+        return $this;
+    }
+
+    public function getMaidenName(): ?string
+    {
+        return $this->maidenName;
+    }
+
+    public function setMaidenName(?string $maidenName): self
+    {
+        $this->maidenName = $maidenName;
 
         return $this;
     }
