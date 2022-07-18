@@ -99,10 +99,11 @@ class MemberType extends AbstractType
                 'label' => "Licence FFTA"
             ])
             ->add('secondClub', ChoiceType::class, [
-                'label' => "Second Club",
+                'label' => "Club",
                 'choices' => [
-                    'Oui' => true,
-                    'Non' => false,
+                    '1er' => 1,
+                    '2ème' => 2,
+                    'Autre' => 0
                 ],
                 'expanded' => true,
             ])

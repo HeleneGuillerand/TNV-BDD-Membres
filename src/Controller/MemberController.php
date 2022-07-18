@@ -27,6 +27,66 @@ class MemberController extends AbstractController
     }
 
     /**
+     * @Route("/fft", name="app_member_fft", methods={"GET"})
+     */
+    public function fftMembers(MemberRepository $memberRepository): Response
+    {
+        return $this->render('member/fft.html.twig', [
+            'members' => $memberRepository->findAllFFT(),
+        ]);
+    }
+
+    /**
+     * @Route("/first", name="app_member_first", methods={"GET"})
+     */
+    public function first(MemberRepository $memberRepository): Response
+    {
+        return $this->render('member/first.html.twig', [
+            'members' => $memberRepository->findAllFirst(),
+        ]);
+    }
+
+    /**
+     * @Route("/second", name="app_member_second", methods={"GET"})
+     */
+    public function second(MemberRepository $memberRepository): Response
+    {
+        return $this->render('member/second.html.twig', [
+            'members' => $memberRepository->findAllSecond(),
+        ]);
+    }
+
+    /**
+     * @Route("/ag", name="app_member_ag", methods={"GET"})
+     */
+    public function ag(MemberRepository $memberRepository): Response
+    {
+        return $this->render('member/ag.html.twig', [
+            'members' => $memberRepository->findAllAg(),
+        ]);
+    }
+
+    /**
+     * @Route("/youths", name="app_member_youths", methods={"GET"})
+     */
+    public function youths(MemberRepository $memberRepository): Response
+    {
+        return $this->render('member/youths.html.twig', [
+            'members' => $memberRepository->findAllYouths(),
+        ]);
+    }
+
+    /**
+     * @Route("/ffta", name="app_member_ffta", methods={"GET"})
+     */
+    public function fftaMembers(MemberRepository $memberRepository): Response
+    {
+        return $this->render('member/ffta.html.twig', [
+            'members' => $memberRepository->findAllFFTA(),
+        ]);
+    }
+
+    /**
      * @Route("/creer", name="app_member_new", methods={"GET", "POST"})
      */
     public function new(Request $request, MemberRepository $memberRepository): Response

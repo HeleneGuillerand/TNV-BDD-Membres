@@ -21,7 +21,7 @@
                 <td class="small text-center">{{ member.dateOfBirth ? member.dateOfBirth|date('d-m-Y') : '' }}</td>
                 <td class="text-center">{{ member.fftNumber ?  member.fftNumber : '-' }}</td>
                 <td class="text-center">{{ member.fftaNumber ?  member.fftaNumber : '-' }}</td>
-                <td class="text-center">{{ member.secondClub ? '' : '<i class="fa fa-check" aria-hidden="true"></i>'}}</td>
+                <td class="text-center">{{ member.secondClub == 1 ? '<i class="fa fa-check" aria-hidden="true"></i>' : ' '}}</td>
                 <td class="text-center">
                 {% if (member.isRegistered) %}
                     <span class="badge badge-pill bg-success">

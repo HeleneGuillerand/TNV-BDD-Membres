@@ -39,6 +39,98 @@ class MemberRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
+    public function findAllFFT(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.fftNumber != FALSE')
+            //->setParameter('val', null)
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
+    public function findAllFirst(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.secondClub = FALSE')
+            //->setParameter('val', null)
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
+    public function findAllSecond(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.secondClub = TRUE')
+            //->setParameter('val', null)
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
+    public function findAllAg(): array
+    {
+        //Where 
+        return $this->createQueryBuilder('m')
+            ->andWhere('m. = :val')
+            ->setParameter('val', null)
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
+    public function findAllYouths(): array
+    {
+        //Where ratesFFT code begins by 1 
+        return $this->createQueryBuilder('m')
+            ->andWhere('m. = :val')
+            ->setParameter('val', null)
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
+    public function findAllFFTA(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.fftaNumber != FALSE')
+            //->setParameter('val', null)
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
 //    /**
 //     * @return Member[] Returns an array of Member objects
 //     */

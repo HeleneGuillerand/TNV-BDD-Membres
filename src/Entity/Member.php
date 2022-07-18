@@ -127,7 +127,7 @@ class Member
     private $attestation;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $secondClub;
 
@@ -474,12 +474,12 @@ class Member
         return $this;
     }
 
-    public function isSecondClub(): ?bool
+    public function getSecondClub(): ?int
     {
         return $this->secondClub;
     }
 
-    public function setSecondClub(?bool $secondClub): self
+    public function setSecondClub(?int $secondClub): self
     {
         $this->secondClub = $secondClub;
 
