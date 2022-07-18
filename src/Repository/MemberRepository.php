@@ -57,6 +57,22 @@ class MemberRepository extends ServiceEntityRepository
     /**
      * @return Member[] Returns an array of Member objects
      */
+    public function findAllActifFFT(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.fftNumber != FALSE')
+            ->andWhere('m.status = :val')
+            ->setParameter('val', 1)
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
     public function findAllFirst(): array
     {
         return $this->createQueryBuilder('m')

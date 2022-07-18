@@ -37,6 +37,16 @@ class MemberController extends AbstractController
     }
 
     /**
+     * @Route("/afft", name="app_member_actif", methods={"GET"})
+     */
+    public function actifFftMembers(MemberRepository $memberRepository): Response
+    {
+        return $this->render('member/actiffft.html.twig', [
+            'members' => $memberRepository->findAllActifFFT(),
+        ]);
+    }
+
+    /**
      * @Route("/first", name="app_member_first", methods={"GET"})
      */
     public function first(MemberRepository $memberRepository): Response
