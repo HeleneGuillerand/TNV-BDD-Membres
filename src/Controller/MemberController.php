@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Member;
 use App\Form\MemberType;
 use App\Repository\MemberRepository;
+use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,6 +37,9 @@ class MemberController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $memberRepository->add($member, true);
+
+            //flash message
+            $this->addFlash('success', $member->getFirstname() .' '. $member->getLastname() .' a bien été créé(e)');
 
             return $this->redirectToRoute('app_member_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -75,8 +79,12 @@ class MemberController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //we set updatedAt
+            $member->setUpdatedAt(new DateTimeImmutable());
+            
             $memberRepository->add($member, true);
-            //set updatedAt
+            //flash message
+            $this->addFlash('success', $member->getFirstname() .' '. $member->getLastname() .' a bien été modifié(e)');
             
             return $this->redirectToRoute('app_member_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -99,8 +107,9 @@ class MemberController extends AbstractController
         
         if ($this->isCsrfTokenValid('delete'.$member->getId(), $request->request->get('_token'))) {
             $memberRepository->remove($member, true);
+            $this->addFlash('danger', 'Membre supprimé.');
         }
-
+        //TODO check what happends with box upon member deletion
         return $this->redirectToRoute('app_member_index', [], Response::HTTP_SEE_OTHER);
     }
 }

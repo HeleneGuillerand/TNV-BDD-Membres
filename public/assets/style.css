@@ -29,11 +29,13 @@ nav ul li {
 
 .form-control:valid {
     background-color:  #212529!important;
+    color: lightgray;
 }
 
 .form-control {
     border-width: 2px; 
     border-color: grey;
+    background-color: grey;
     
 }   
 

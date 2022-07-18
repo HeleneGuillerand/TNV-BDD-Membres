@@ -50,6 +50,20 @@
                     <td>{{ member.city }}</td>
                 </tr>
                 <tr>
+                    <th>Téléphone</th>
+                    <td>{{ member.firstPhone }}</td>
+                </tr>
+                {% if (member.secondPhone) %}
+                    <tr>
+                        <th>Téléphone 2</th>
+                        <td>{{ member.secondPhone }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Mobile</th>
+                    <td>{{ member.mobilePhone }}</td>
+                </tr>
+                <tr>
                     <th>Email</th>
                     <td>{{ member.firstEmail }}</td>
                 </tr>
@@ -68,24 +82,12 @@
                     <td>{{ member.job }}</td>
                 </tr>
                 <tr>
-                    <th>PouvoirAg</th>
-                    <td>{{ member.pouvoirAg ? 'Yes' : 'No' }}</td>
-                </tr>
-                <tr>
-                    <th>Donation</th>
-                    <td>{{ member.donation }}</td>
-                </tr>
-                <tr>
-                    <th>Total payé</th>
-                    <td>{{ member.totalPayed }}</td>
-                </tr>
-                <tr>
-                    <th>Modifié le</th>
-                    <td>{{ member.updatedAt ? member.updatedAt|date('d-m-Y H:i:s') : '-' }}</td>
-                </tr>
-                <tr>
                     <th>Membre depuis</th>
                     <td>{{ member.firstRegisteration ? member.firstRegisteration|date('d-m-Y') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Dernière saison</th>
+                    <td>{{ member.lastKnownSeason }}</td>
                 </tr>
                 {% if (member.fftNumber) %}
                     <tr>
@@ -100,20 +102,65 @@
                     </tr>
                 {% endif %}
                 <tr>
-                    <th>Dernière saison</th>
-                    <td>{{ member.lastKnownSeason }}</td>
-                </tr>
-                <tr>
-                    <th>Attestation</th>
-                    <td>{{ member.attestation ? 'Yes' : 'No' }}</td>
-                </tr>
-                <tr>
                     <th>Second Club</th>
-                    <td>{{ member.secondClub }}</td>
+                    <td>{{ member.secondClub ? 'Oui' : 'Non' }}</td>
                 </tr>
+                <tr>
+                    <th>Tarif</th>
+                    <td>
+                        {% if member.ratesFFT %}
+                            {% for rate in member.ratesFFT %}
+                                <p>{{ rate.label }}: {{ rate.amount }} €</p>
+                            {% endfor %}
+                        {% endif %}
+                        {#% if member.ratesFFTA %}
+                            {% for rate in member.ratesFFTA %}
+                                <p>{{ rate.label }}: {{ rate.amount }} €</p>
+                            {% endfor %}
+                        {% endif %#}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Donation</th>
+                    <td>{{ member.donation ? member.donation : '-' }} €</td>
+                </tr>
+                <tr>
+                    <th>Total payé</th>
+                    <td>{{ member.totalPayed ? member.totalPayed : '-' }} €</td>
+                </tr>
+                <tr>
+                    <th>A payé</th>
+                    <td>{{ member.isRegistered ? 'Oui' : 'Non' }}</td>
+                </tr>
+                {% if (member.boxes) %}
+                    <tr>
+                        <th>Caisson(s)</th>
+                        <td>
+                            {% for box in member.boxes %}
+                                <p>{{ box.number }}</p>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endif %}
                 <tr>
                     <th>Status</th>
-                    <td>{{ member.status }}</td>
+                    <td>
+                        {% if (member.status == 1) %}
+                            <span class="badge bg-success">Actif</span>
+                        {% elseif (member.status == 2) %}
+                            <span class="badge bg-warning">Inactif</span>
+                        {% elseif (member.status == 3) %}
+                           <span class="badge bg-danger">Décédé</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Particularités</th>
+                    <td>
+                        {% for peculiarity in member.peculiarities %}
+                            <p>{{ peculiarity.name }}</p>
+                        {% endfor %}
+                    </td>
                 </tr>
                 {% if (member.note) %}
                     <tr>
@@ -121,26 +168,18 @@
                         <td>{{ member.note }}</td>
                     </tr>
                 {% endif %}
-                
                 <tr>
-                    <th>A payé</th>
-                    <td>{{ member.isRegistered ? 'Oui' : 'Non' }}</td>
+                    <th>Pouvoir AG reçu</th>
+                    <td>{{ member.pouvoirAg ? 'Oui' : 'Non' }}</td>
                 </tr>
                 <tr>
-                    <th>Téléphone</th>
-                    <td>{{ member.firstPhone }}</td>
+                    <th>Attestation nécessaire</th>
+                    <td>{{ member.attestation ? 'Oui' : 'Non' }}</td>
                 </tr>
-                {% if (member.secondPhone) %}
-                    <tr>
-                        <th>Téléphone 2</th>
-                        <td>{{ member.secondPhone }}</td>
-                    </tr>
-                {% endif %}
                 <tr>
-                    <th>Mobile</th>
-                    <td>{{ member.mobilePhone }}</td>
+                    <th>Modifié le</th>
+                    <td>{{ member.updatedAt ? member.updatedAt|date('d-m-Y H:i:s') : '-' }}</td>
                 </tr>
-
             </tbody>
         </table>
     </div>
