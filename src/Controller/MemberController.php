@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use DateInterval;
 use App\Entity\Member;
 use DateTimeImmutable;
 use App\Form\MemberType;
@@ -76,13 +77,39 @@ class MemberController extends AbstractController
     }
 
     /**
-     * @Route("/ag", name="app_member_ag", methods={"GET"})
+     * @Route("/ag", name="app_member_ag", methods={"GET", "POST"})
      */
-    public function ag(MemberRepository $memberRepository): Response
+    public function ag(Request $request, MemberRepository $memberRepository): Response
     {
+
+        if ($request->query->get('nextAg') != null ) {
+           //we get the assembly date
+            $nextAg = new DateTimeImmutable($request->query->get('nextAg'));
+           
+            //we set registarationLimit and birthLimit
+            //where firstRegisteration must be older than NextAg - 6months
+            $registerationLimit = $nextAg->sub(new DateInterval('P6M'));
+            //where dateOfBirth must be older than NextAg -16 years 
+            $birthLimit = $nextAg->sub(new DateInterval('P16Y'));;
+            
+            //we diplay the page with the members' list
+            return $this->render('member/ag.html.twig', [
+                'members' => $memberRepository->findAllAg($registerationLimit, $birthLimit),
+                'nextAg' => $nextAg
+            ]);
+            
+        }
+
         return $this->render('member/ag.html.twig', [
-            'members' => $memberRepository->findAllAg(),
+            'members' => null,
+            'nextAg' => null
         ]);
+        
+        
+        
+        //return $this->render('member/ag.html.twig', [
+        //    'members' => $memberRepository->findAllAg($registerationLimit, $birthLimit),
+        //]);
     }
 
     /**

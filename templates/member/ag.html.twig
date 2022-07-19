@@ -4,8 +4,17 @@
 
 {% block body %}
     <h1>Membres AG</h1>
-    <a href="{{ path('app_member_new') }}"class="btn btn-primary float-md-end mb-2">Ajouter un membre</a>
-    {{ include ('_flash_messages.html.twig') }}
+
+    <form methode="post" novalidate="novalidate">
+        <div class="mb-3 row mt-5">
+            <label class="col-form-label col-sm-5 required" for="nextAg">Prochaine Assemblée Générale</label>
+            <div class="col-sm-2 ">
+                <input type="date" id="nextAg" name="nextAg" required="required" class="form-control" {{ nextAg ? 'value="{{nextAg}}"' : ' '}}>          
+            </div>
+        </div>
+        <button class="btn btn-primary float-end mb-4">Valider</button>
+    </form>
+
     {{ include ('member/_list.html.twig') }}
     
 

@@ -102,12 +102,17 @@ class MemberRepository extends ServiceEntityRepository
     /**
      * @return Member[] Returns an array of Member objects
      */
-    public function findAllAg(): array
+    public function findAllAg($registerationLimit, $birthLimit): array
     {
-        //TODO use the FFT rates to define who goes to ag
+        //TODO 
+        
+        //where isRegistered == TRUE
         return $this->createQueryBuilder('m')
-            ->andWhere('m. = :val')
-            ->setParameter('val', null)
+            ->andWhere('m.isRegistered = TRUE')
+            ->andWhere('m.firstRegisteration < :registerationLimit')
+            ->setParameter('registerationLimit', $registerationLimit)
+            ->andWhere('m.dateOfBirth < :birthLimit')
+            ->setParameter('birthLimit', $birthLimit)
             ->orderBy('m.lastname', 'ASC')
             ->getQuery()
             ->getResult()
