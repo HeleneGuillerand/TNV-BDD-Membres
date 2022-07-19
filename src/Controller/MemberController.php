@@ -22,7 +22,7 @@ class MemberController extends AbstractController
     public function index(MemberRepository $memberRepository): Response
     {
         return $this->render('member/index.html.twig', [
-            'members' => $memberRepository->findAll(),
+            'members' => $memberRepository->findAllAlphabetical(),
         ]);
     }
 
@@ -83,6 +83,16 @@ class MemberController extends AbstractController
     {
         return $this->render('member/youths.html.twig', [
             'members' => $memberRepository->findAllYouths(),
+        ]);
+    }
+
+    /**
+     * @Route("/initiation", name="app_member_initiation", methods={"GET"})
+     */
+    public function initiation(MemberRepository $memberRepository): Response
+    {
+        return $this->render('member/initiation.html.twig', [
+            'members' => $memberRepository->findAllInit(),
         ]);
     }
 

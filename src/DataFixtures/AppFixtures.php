@@ -44,7 +44,7 @@ class AppFixtures extends Fixture
         }
 
         //*Peculiarities
-        $peculiarities = ['Finiada', 'CE Renault', 'Handicape', 'Pokémon'];
+        $peculiarities = ['Finiada', 'CE Renault', 'Handicape', 'Ecole de tir', 'Initiation Adulte','Pokémon'];
         //on créé une liste d'objets peculiarity
         $peculiaritiesList = [];
         //on parcourt le tableau pour créer des objets peculiarity

@@ -12,7 +12,7 @@
   <body class="bg-dark">
     <nav class="navbar navbar-expand-lg bg-primary ">
         <div class="container-fluid ">
-            <a class="navbar-brand" href="#"><img src="{{ asset('assets/Logo TNV.png') }}" alt="Emblème du TNV"></a>
+            <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('assets/Logo TNV.png') }}" alt="Emblème du TNV"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -22,14 +22,15 @@
                       <a class="nav-link active" aria-current="page" href="{{ path('home') }}">Accueil</a>
                     </li>
                     <li class="nav-item dropdown mr-2">
-                      <a class="nav-link  dropdown-toggle"href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Membres</a>
-                      <ul class="dropdown-menu bg-primary" aria-labelledby="navbarDropdown">
+                      <a class="nav-link  dropdown-toggle"href="#" id="navbarDropdownMenuLink-1" role="button" data-bs-toggle="dropdown" aria-expanded="false">Membres</a>
+                      <ul class="dropdown-menu bg-primary" aria-labelledby="navbarDropdownMenuLink-1">
                         <li><a class="dropdown-item" href="{{ path('app_member_index') }}">Tous les membres</a></li>
                         <li><a class="dropdown-item" href="{{ path('app_member_fft') }}">FFT</a></li>
                         <li><a class="dropdown-item" href="{{ path('app_member_actif') }}">Actifs FFT</a></li>
                         <li><a class="dropdown-item" href="{{ path('app_member_first') }}">Premier club FFT</a></li>
                         <li><a class="dropdown-item" href="{{ path('app_member_second') }}">Second club FFT</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_member_youths') }}">Jeunes FFT</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_member_youths') }}">Ecole de Tir FFT</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_member_initiation') }}">Initiation Adulte FFT</a></li>
                         <li><a class="dropdown-item" href="{{ path('app_member_ag') }}">AG</a></li>
                         <li><a class="dropdown-item" href="{{ path('app_member_ffta') }}">FFTA</a></li>
                       </ul>
@@ -41,19 +42,19 @@
                       <a class="nav-link" href="#">Particularités</a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink-2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Tarifs
                       </a>
-                      <ul class="dropdown-menu bg-primary" aria-labelledby="navbarDropdown">
+                      <ul class="dropdown-menu bg-primary" aria-labelledby="navbarDropdownMenuLink-2">
                         <li><a class="dropdown-item" href="#">FFT</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                       </ul>
                     </li>
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink-3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Listes
                       </a>
-                      <ul class="dropdown-menu  bg-primary" aria-labelledby="navbarDropdown">
+                      <ul class="dropdown-menu  bg-primary" aria-labelledby="navbarDropdownMenuLink-3">
                         <li><a class="dropdown-item" href="#">Convocation Assemblée Générale</a></li>
                         <li><a class="dropdown-item" href="#">Appel de cotisation</a></li>
                         <li><a class="dropdown-item" href="#">Attestations de paiement</a></li>

@@ -102,12 +102,12 @@ class Member
     private $firstRegisteration;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=8, nullable=true)
      */
     private $fftNumber;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=7, nullable=true)
      */
     private $fftaNumber;
 
@@ -414,12 +414,12 @@ class Member
         return $this;
     }
 
-    public function getFftNumber(): ?int
+    public function getFftNumber(): ?string
     {
         return $this->fftNumber;
     }
 
-    public function setFftNumber(?int $fftNumber): self
+    public function setFftNumber(?string $fftNumber): self
     {
         $this->fftNumber = $fftNumber;
 

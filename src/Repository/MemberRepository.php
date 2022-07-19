@@ -42,6 +42,19 @@ class MemberRepository extends ServiceEntityRepository
     /**
      * @return Member[] Returns an array of Member objects
      */
+    public function findAllAlphabetical(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
     public function findAllFFT(): array
     {
         return $this->createQueryBuilder('m')
@@ -76,8 +89,8 @@ class MemberRepository extends ServiceEntityRepository
     public function findAllFirst(): array
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.secondClub = FALSE')
-            //->setParameter('val', null)
+            ->andWhere('m.secondClub = :val')
+            ->setParameter('val', 1)
             ->orderBy('m.lastname', 'ASC')
             ->getQuery()
             ->getResult()
@@ -91,8 +104,8 @@ class MemberRepository extends ServiceEntityRepository
     public function findAllSecond(): array
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.secondClub = TRUE')
-            //->setParameter('val', null)
+            ->andWhere('m.secondClub = :val')
+            ->setParameter('val', 2)
             ->orderBy('m.lastname', 'ASC')
             ->getQuery()
             ->getResult()
@@ -105,7 +118,7 @@ class MemberRepository extends ServiceEntityRepository
      */
     public function findAllAg(): array
     {
-        //Where 
+        //TODO use the FFT rates to define who goes to ag
         return $this->createQueryBuilder('m')
             ->andWhere('m. = :val')
             ->setParameter('val', null)
@@ -121,10 +134,30 @@ class MemberRepository extends ServiceEntityRepository
      */
     public function findAllYouths(): array
     {
-        //Where ratesFFT code begins by 1 
+        //TODO use -> peculiariy Ecole de Tir 
+        //inner join on many to many
         return $this->createQueryBuilder('m')
-            ->andWhere('m. = :val')
-            ->setParameter('val', null)
+            ->innerJoin('m.ratesFFT', 'r', 'WITH', )
+            ->andWhere('m.ratesFFT = :val')
+            ->setParameter('val', '1%')
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
+    public function findAllInit(): array
+    {
+        //TODO use -> peculiariy Initiation adulte 
+        //inner join on many to many
+        return $this->createQueryBuilder('m')
+            ->innerJoin('m.ratesFFT', 'r', 'WITH', )
+            ->andWhere('m.ratesFFT = :val')
+            ->setParameter('val', '1%')
             ->orderBy('m.lastname', 'ASC')
             ->getQuery()
             ->getResult()

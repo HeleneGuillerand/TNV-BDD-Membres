@@ -43,3 +43,7 @@ nav ul li {
     border-radius: 10px!important;
 }
 
+
+#member_lastKnownSeason_help {
+    color: lightgray!important;
+}
