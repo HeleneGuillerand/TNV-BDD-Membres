@@ -3,13 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Member;
-use App\Form\MemberType;
-use App\Repository\MemberRepository;
 use DateTimeImmutable;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\MemberType;
+use App\Entity\Peculiarity;
+use Doctrine\ORM\EntityManager;
+use App\Repository\MemberRepository;
+use App\Repository\PeculiarityRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/membre")
@@ -51,8 +54,11 @@ class MemberController extends AbstractController
      */
     public function first(MemberRepository $memberRepository): Response
     {
+        //We want the member registered with TNV as First club 
+        $clubNb = 1;
+
         return $this->render('member/first.html.twig', [
-            'members' => $memberRepository->findAllFirst(),
+            'members' => $memberRepository->findAllClub($clubNb),
         ]);
     }
 
@@ -61,8 +67,11 @@ class MemberController extends AbstractController
      */
     public function second(MemberRepository $memberRepository): Response
     {
-        return $this->render('member/second.html.twig', [
-            'members' => $memberRepository->findAllSecond(),
+        //We want the member registered with TNV as Second club 
+        $clubNb = 2;
+
+        return $this->render('member/first.html.twig', [
+            'members' => $memberRepository->findAllClub($clubNb),
         ]);
     }
 
@@ -79,20 +88,26 @@ class MemberController extends AbstractController
     /**
      * @Route("/youths", name="app_member_youths", methods={"GET"})
      */
-    public function youths(MemberRepository $memberRepository): Response
+    public function youths(MemberRepository $memberRepository, PeculiarityRepository $peculiarityRepository): Response
     {
+        //we identify the "Ecole de tir" peculiarity id
+        $youthPeculiarity = $peculiarityRepository->findOneByName('Ecole de tir');
+
         return $this->render('member/youths.html.twig', [
-            'members' => $memberRepository->findAllYouths(),
+            'members' => $memberRepository->findByPeculiarity($youthPeculiarity),
         ]);
     }
 
     /**
      * @Route("/initiation", name="app_member_initiation", methods={"GET"})
      */
-    public function initiation(MemberRepository $memberRepository): Response
+    public function initiation(MemberRepository $memberRepository, PeculiarityRepository $peculiarityRepository): Response
     {
+        //we identify the "Initiation Adulte" peculiarity id
+        $initiationPeculiarity = $peculiarityRepository->findOneByName('Initiation Adulte');
+
         return $this->render('member/initiation.html.twig', [
-            'members' => $memberRepository->findAllInit(),
+            'members' => $memberRepository->findByPeculiarity($initiationPeculiarity),
         ]);
     }
 

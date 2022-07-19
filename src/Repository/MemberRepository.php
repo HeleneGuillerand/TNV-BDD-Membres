@@ -86,11 +86,11 @@ class MemberRepository extends ServiceEntityRepository
     /**
      * @return Member[] Returns an array of Member objects
      */
-    public function findAllFirst(): array
+    public function findAllClub($value): array
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.secondClub = :val')
-            ->setParameter('val', 1)
+            ->setParameter('val', $value)
             ->orderBy('m.lastname', 'ASC')
             ->getQuery()
             ->getResult()
@@ -98,20 +98,6 @@ class MemberRepository extends ServiceEntityRepository
 
     }
 
-    /**
-     * @return Member[] Returns an array of Member objects
-     */
-    public function findAllSecond(): array
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.secondClub = :val')
-            ->setParameter('val', 2)
-            ->orderBy('m.lastname', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-
-    }
 
     /**
      * @return Member[] Returns an array of Member objects
@@ -132,53 +118,32 @@ class MemberRepository extends ServiceEntityRepository
     /**
      * @return Member[] Returns an array of Member objects
      */
-    public function findAllYouths(): array
-    {
-        //TODO use -> peculiariy Ecole de Tir 
-        //inner join on many to many
-        return $this->createQueryBuilder('m')
-            ->innerJoin('m.ratesFFT', 'r', 'WITH', )
-            ->andWhere('m.ratesFFT = :val')
-            ->setParameter('val', '1%')
-            ->orderBy('m.lastname', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-
-    }
-
-    /**
-     * @return Member[] Returns an array of Member objects
-     */
-    public function findAllInit(): array
-    {
-        //TODO use -> peculiariy Initiation adulte 
-        //inner join on many to many
-        return $this->createQueryBuilder('m')
-            ->innerJoin('m.ratesFFT', 'r', 'WITH', )
-            ->andWhere('m.ratesFFT = :val')
-            ->setParameter('val', '1%')
-            ->orderBy('m.lastname', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-
-    }
-
-    /**
-     * @return Member[] Returns an array of Member objects
-     */
     public function findAllFFTA(): array
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.fftaNumber != FALSE')
-            //->setParameter('val', null)
             ->orderBy('m.lastname', 'ASC')
             ->getQuery()
             ->getResult()
         ;
 
     }
+
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
+    public function findByPeculiarity($peculiarity): array
+    {
+        return $this->createQueryBuilder('m')
+            ->innerJoin('m.peculiarities', 'p')
+            ->where('p.id = :peculiarity_id')
+            ->setParameter('peculiarity_id', $peculiarity->getId())
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 
 //    /**
 //     * @return Member[] Returns an array of Member objects
