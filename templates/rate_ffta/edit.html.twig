@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tarifs FFTA Edition{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_rate_ffta_index') }}" class="btn btn-primary float-end m-2">Retour</a>
+    <h1 class="mb-4">Modifier le tarif</h1>
+
+    {{ include('rate_ffta/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+
+    {{ include('rate_ffta/_delete_form.html.twig') }}
+{% endblock %}

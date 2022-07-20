@@ -7,10 +7,12 @@ use App\Entity\Box;
 use App\Entity\Member;
 use DateTimeImmutable;
 use App\Entity\RateFFT;
+use App\Entity\RateFFTA;
 use App\Entity\Peculiarity;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use App\DataFixtures\Provider\RatesProvider;
+use App\DataFixtures\Provider\RatesFFTProvider;
+use App\DataFixtures\Provider\RatesFFTAProvider;
 use Doctrine\DBAL\Driver\IBMDB2\Exception\Factory;
 
 class AppFixtures extends Fixture
@@ -22,25 +24,48 @@ class AppFixtures extends Fixture
         
         //*Rates FFT
         // on récupère le tableau de tarifs
-        $ratesProvider = new RatesProvider();
-        $rates = $ratesProvider->getRates();
+        $ratesFFTProvider = new RatesFFTProvider();
+        $ratesFFT = $ratesFFTProvider->getRates();
         // on créé les différents tarifs on les insert en BDD et dans un tableau d'objets rates
-        $ratesList = [];
+        $ratesFFTList = [];
 
-        foreach($rates as $rate){
+        foreach($ratesFFT as $rateFFT){
             //on créé un nouvel objet
-            $newRate = new RateFFT();
+            $newRateFFT = new RateFFT();
             //on le remplit
-            $newRate->setCode($rate['code']);
-            $newRate->setLabel($rate['label']);
-            $newRate->setEntryFee($rate['entryFee']);
-            $newRate->setCotisation($rate['cotisation']);
-            $newRate->setLicence($rate['licence']);
-            $newRate->setAmount($rate['amount']);
+            $newRateFFT->setCode($rateFFT['code']);
+            $newRateFFT->setLabel($rateFFT['label']);
+            $newRateFFT->setEntryFee($rateFFT['entryFee']);
+            $newRateFFT->setCotisation($rateFFT['cotisation']);
+            $newRateFFT->setLicence($rateFFT['licence']);
+            $newRateFFT->setAmount($rateFFT['amount']);
             //on l'ajoute à la liste
-            $ratesList[] = $newRate;
+            $ratesFFTList[] = $newRateFFT;
             //on l'ajoute en BDD
-            $manager->persist($newRate);
+            $manager->persist($newRateFFT);
+        }
+
+        //*Rates FFTA
+        // on récupère le tableau de tarifs
+        $ratesFFTAProvider = new RatesFFTAProvider();
+        $ratesFFTA = $ratesFFTAProvider->getRates();
+        // on créé les différents tarifs on les insert en BDD et dans un tableau d'objets rates
+        $ratesFFTAList = [];
+
+        foreach($ratesFFTA as $rateFFTA){
+            //on créé un nouvel objet
+            $newRateFFTA = new RateFFTA();
+            //on le remplit
+            $newRateFFTA->setCode($rateFFTA['code']);
+            $newRateFFTA->setLabel($rateFFTA['label']);
+            $newRateFFTA->setEntryFee($rateFFTA['entryFee']);
+            $newRateFFTA->setCotisation($rateFFTA['cotisation']);
+            $newRateFFTA->setLicence($rateFFTA['licence']);
+            $newRateFFTA->setAmount($rateFFTA['amount']);
+            //on l'ajoute à la liste
+            $ratesFFTAList[] = $newRateFFTA;
+            //on l'ajoute en BDD
+            $manager->persist($newRateFFTA);
         }
 
         //*Peculiarities
@@ -110,9 +135,9 @@ class AppFixtures extends Fixture
             //on défini un tarif en fonction de l'age 
             $SeniorLimit = new DateTimeImmutable('-' . 25 . ' years');
             if($member->getDateOfBirth()> $SeniorLimit){
-                $member->addRatesFFT($ratesList[mt_rand(8,17)]);
+                $member->addRatesFFT($ratesFFTList[mt_rand(8,17)]);
             } else {
-                $member->addRatesFFT($ratesList[mt_rand(0,7)]);
+                $member->addRatesFFT($ratesFFTList[mt_rand(0,7)]);
             };
             //on l'ajoute en BDD
             $manager->persist($member);

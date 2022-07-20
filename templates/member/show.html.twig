@@ -105,21 +105,26 @@
                     <th>Second Club</th>
                     <td>{{ member.secondClub == 2 ? 'Oui' : 'Non' }}</td>
                 </tr>
-                <tr>
-                    <th>Tarif</th>
-                    <td>
-                        {% if member.ratesFFT %}
+                {% if member.ratesFFT %}
+                    <tr>
+                        <th>Tarif(s) FFT</th>
+                        <td>
                             {% for rate in member.ratesFFT %}
                                 <p>{{ rate.label }}: {{ rate.amount }} €</p>
                             {% endfor %}
-                        {% endif %}
-                        {#% if member.ratesFFTA %}
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if member.ratesFFTA %}
+                    <tr>
+                        <th>Tarif(s) FFTA</th>
+                        <td>
                             {% for rate in member.ratesFFTA %}
                                 <p>{{ rate.label }}: {{ rate.amount }} €</p>
                             {% endfor %}
-                        {% endif %#}
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                {% endif %}
                 <tr>
                     <th>Donation</th>
                     <td>{{ member.donation ? member.donation : '-' }} €</td>

@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\RateFFTRepository;
+use App\Repository\RateFFTARepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,13 +10,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass=RateFFTRepository::class)
+ * @ORM\Entity(repositoryClass=RateFFTARepository::class)
  * @UniqueEntity("code",
  * message="Le numéro de code est déjà utilisé")
  * @UniqueEntity("label",
  * message="Cette description est déjà utilisée")
  */
-class RateFFT
+class RateFFTA
 {
     /**
      * @ORM\Id
@@ -58,7 +58,7 @@ class RateFFT
     private $amount;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Member::class, mappedBy="ratesFFT")
+     * @ORM\ManyToMany(targetEntity=Member::class, mappedBy="ratesFFTA")
      */
     private $members;
 
@@ -156,7 +156,7 @@ class RateFFT
     {
         if (!$this->members->contains($member)) {
             $this->members[] = $member;
-            $member->addRatesFFT($this);
+            $member->addRatesFFTA($this);
         }
 
         return $this;
@@ -165,7 +165,7 @@ class RateFFT
     public function removeMember(Member $member): self
     {
         if ($this->members->removeElement($member)) {
-            $member->removeRatesFFT($this);
+            $member->removeRatesFFTA($this);
         }
 
         return $this;
