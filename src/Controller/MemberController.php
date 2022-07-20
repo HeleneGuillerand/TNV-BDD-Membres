@@ -71,7 +71,7 @@ class MemberController extends AbstractController
         //We want the member registered with TNV as Second club 
         $clubNb = 2;
 
-        return $this->render('member/first.html.twig', [
+        return $this->render('member/second.html.twig', [
             'members' => $memberRepository->findAllClub($clubNb),
         ]);
     }
@@ -104,13 +104,19 @@ class MemberController extends AbstractController
             'members' => null,
             'nextAg' => null
         ]);
-        
-        
-        
-        //return $this->render('member/ag.html.twig', [
-        //    'members' => $memberRepository->findAllAg($registerationLimit, $birthLimit),
-        //]);
     }
+
+    /**
+     * @Route("/attestation", name="app_member_attestation", methods={"GET"})
+     */
+    public function attestation(MemberRepository $memberRepository): Response
+    {
+
+        return $this->render('member/attestation.html.twig', [
+            'members' => $memberRepository->findAllAttestation(),
+        ]);
+    }
+
 
     /**
      * @Route("/youths", name="app_member_youths", methods={"GET"})

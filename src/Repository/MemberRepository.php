@@ -100,15 +100,13 @@ class MemberRepository extends ServiceEntityRepository
 
 
     /**
-     * @return Member[] Returns an array of Member objects
+     * @return Member[] Returns an array of Member objects 
      */
     public function findAllAg($registerationLimit, $birthLimit): array
     {
-        //TODO 
-        
-        //where isRegistered == TRUE
         return $this->createQueryBuilder('m')
             ->andWhere('m.isRegistered = TRUE')
+            ->andWhere('m.status = 1')
             ->andWhere('m.firstRegisteration < :registerationLimit')
             ->setParameter('registerationLimit', $registerationLimit)
             ->andWhere('m.dateOfBirth < :birthLimit')
@@ -137,12 +135,29 @@ class MemberRepository extends ServiceEntityRepository
     /**
      * @return Member[] Returns an array of Member objects
      */
+    public function findAllAttestation(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.attestation != TRUE')
+            ->andWhere('m.status = 1')
+            ->andWhere('m.isRegistered = TRUE')
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
     public function findByPeculiarity($peculiarity): array
     {
         return $this->createQueryBuilder('m')
             ->innerJoin('m.peculiarities', 'p')
             ->where('p.id = :peculiarity_id')
             ->setParameter('peculiarity_id', $peculiarity->getId())
+            ->andWhere('m.status = 1')
             ->orderBy('m.lastname', 'ASC')
             ->getQuery()
             ->getResult()
