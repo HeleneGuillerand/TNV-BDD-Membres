@@ -38,6 +38,17 @@ class BoxRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    /**
+     * @return Box[] Returns an array of Box objects
+     */
+    public function findAllNumberAsc(): array
+    {
+        return $this->createQueryBuilder('b')
+            ->orderBy('b.number', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    /**
 //     * @return Box[] Returns an array of Box objects

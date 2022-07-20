@@ -137,7 +137,7 @@
                         <th>Caisson(s)</th>
                         <td>
                             {% for box in member.boxes %}
-                                <p>{{ box.number }}</p>
+                                <a href="{{ path('app_box_show', {'id': box.id}) }}">{{ box.number }}</a>
                             {% endfor %}
                         </td>
                     </tr>
