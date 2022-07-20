@@ -9,6 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=RateFFTRepository::class)
+ * @UniqueEntity("code",
+ * message="Le numéro de code est déjà utilisé")
+ * @UniqueEntity("label",
+ * message="Cette description est déjà utilisée")
  */
 class RateFFT
 {
@@ -21,11 +25,13 @@ class RateFFT
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Assert\NotBlank
      */
     private $code;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $label;
 

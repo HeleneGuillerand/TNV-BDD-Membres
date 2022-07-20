@@ -92,7 +92,7 @@ class MemberType extends AbstractType
                 'label' => "Dernière saison tirée",
                 'help' => "Au format YYYY/YYYY"
             ])
-            ->add('fftNumber', IntegerType::class, [
+            ->add('fftNumber', TextType::class, [
                 'label' => "Licence FFT"
             ])
             ->add('fftaNumber', TextType::class, [

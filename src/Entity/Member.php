@@ -6,9 +6,15 @@ use App\Repository\MemberRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=MemberRepository::class)
+ * @UniqueEntity("fftNumber",
+ * message="Le numéro de licence FFT est déjà utilisé")
+ * @UniqueEntity("fftaNumber",
+ * message="Le numéro de licence FFTA est déjà utilisé")
  */
 class Member
 {
@@ -21,53 +27,69 @@ class Member
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      minMessage = "Le nom de famille doit faire au minimum {{ limit }} caractères")
+     * @Assert\NotBlank
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      minMessage = "Le prénom doit faire au minimum {{ limit }} caractères")
+     * @Assert\NotBlank
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * 
      */
     private $picture;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * @Assert\NotBlank
      */
     private $dateOfBirth;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $placeOfBirth;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $address;
 
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $city;
 
 
     /**
      * @ORM\Column(type="string", length=400)
+     * @Assert\Email
+     * @Assert\NotBlank
      */
     private $firstEmail;
 
     /**
      * @ORM\Column(type="string", length=400, nullable=true)
+     * @Assert\Email
      */
     private $secondEmail;
 
     /**
      * @ORM\Column(type="string", length=400)
+     * @Assert\NotBlank
      */
     private $Sponsor;
 
@@ -98,16 +120,29 @@ class Member
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * @Assert\NotBlank
      */
     private $firstRegisteration;
 
     /**
      * @ORM\Column(type="string", length=8, nullable=true)
+     * @Assert\Length(
+     *      min = 8,
+     *      max = 8,
+     *      minMessage = "Le numéro de licence doit faire {{ limit }} caractères",
+     *      maxMessage = "Le numéro de licence doit faire {{ limit }} caractères"
+     * )
      */
     private $fftNumber;
 
     /**
      * @ORM\Column(type="string", length=7, nullable=true)
+     * @Assert\Length(
+     *      min = 7,
+     *      max = 7,
+     *      minMessage = "Le numéro de licence doit faire {{ limit }} caractères",
+     *      maxMessage = "Le numéro de licence doit faire {{ limit }} caractères"
+     * )
      */
     private $fftaNumber;
 
@@ -133,11 +168,16 @@ class Member
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotBlank
      */
     private $status;
 
     /**
      * @ORM\Column(type="string", length=500, nullable=true)
+     * @Assert\Length(
+     *      max = 500,
+     *      maxMessage = "Le champ note ne doit pas dépasser {{ limit }} caractères"
+     * )
      */
     private $note;
 
@@ -158,11 +198,13 @@ class Member
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotBlank
      */
     private $title;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\NotBlank
      */
     private $isRegistered;
 
@@ -248,7 +290,7 @@ class Member
         return $this->dateOfBirth;
     }
 
-    public function setDateOfBirth(\DateTimeImmutable $dateOfBirth): self
+    public function setDateOfBirth(\DateTimeImmutable $dateOfBirth = null): self
     {
         $this->dateOfBirth = $dateOfBirth;
 
@@ -407,7 +449,7 @@ class Member
         return $this->firstRegisteration;
     }
 
-    public function setFirstRegisteration(\DateTimeImmutable $firstRegisteration): self
+    public function setFirstRegisteration(\DateTimeImmutable $firstRegisteration = null): self
     {
         $this->firstRegisteration = $firstRegisteration;
 
