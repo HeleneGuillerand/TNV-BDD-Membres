@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Membres AG{% endblock %}
+
+{% block body %}
+    <h1>Assemblée générale</h1>
+
+    <form methode="post" novalidate="novalidate">
+        <div class="mb-3 row mt-5">
+            <label class="col-form-label col-sm-5 required" for="nextAg">Prochaine Assemblée Générale</label>
+            <div class="col-sm-3 ">
+                <input type="date" id="nextAg" name="nextAg" required="required" class="form-control" >          
+            </div>
+            <button class="btn btn-primary col-sm-2 float-end mb-4">Valider</button>
+        </div>
+    </form>
+    {% if nextAg %}
+        <p>Membres concernés par l'Assemblée générale du {{ nextAg|date('d/m/Y') }} :</p>
+        {{ include ('member/_list.html.twig') }}
+    {% endif %}
+    
+
+    
+{% endblock %}

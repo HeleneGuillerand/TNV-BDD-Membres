@@ -158,6 +158,38 @@ class RatesProvider
             'licence' => 0,
             'amount' => 46
         ],
+        [
+            'code' => 'CA',
+            'label' => 'Caisson',
+            'entryFee' => 0,
+            'cotisation' => 46,
+            'licence' => 0,
+            'amount' => 46
+        ],
+        [
+            'code' => 'CA',
+            'label' => 'Caisson',
+            'entryFee' => 0,
+            'cotisation' => 46,
+            'licence' => 0,
+            'amount' => 46
+        ],
+        [
+            'code' => 'CA',
+            'label' => 'Caisson',
+            'entryFee' => 0,
+            'cotisation' => 46,
+            'licence' => 0,
+            'amount' => 46
+        ],
+        [
+            'code' => 'CA',
+            'label' => 'Caisson',
+            'entryFee' => 0,
+            'cotisation' => 46,
+            'licence' => 0,
+            'amount' => 46
+        ],
     ];
             
     /**

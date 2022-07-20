@@ -102,12 +102,12 @@ class Member
     private $firstRegisteration;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=8, nullable=true)
      */
     private $fftNumber;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=7, nullable=true)
      */
     private $fftaNumber;
 
@@ -127,7 +127,7 @@ class Member
     private $attestation;
 
     /**
-     * @ORM\Column(type="string", length=500, nullable=true)
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $secondClub;
 
@@ -167,17 +167,17 @@ class Member
     private $isRegistered;
 
     /**
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=12, nullable=true)
      */
     private $firstPhone;
 
     /**
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=12, nullable=true)
      */
     private $secondPhone;
 
     /**
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=12, nullable=true)
      */
     private $mobilePhone;
 
@@ -185,6 +185,11 @@ class Member
      * @ORM\Column(type="integer", nullable=true)
      */
     private $zipcode;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $maidenName;
 
    
 
@@ -409,12 +414,12 @@ class Member
         return $this;
     }
 
-    public function getFftNumber(): ?int
+    public function getFftNumber(): ?string
     {
         return $this->fftNumber;
     }
 
-    public function setFftNumber(?int $fftNumber): self
+    public function setFftNumber(?string $fftNumber): self
     {
         $this->fftNumber = $fftNumber;
 
@@ -469,12 +474,12 @@ class Member
         return $this;
     }
 
-    public function getSecondClub(): ?string
+    public function getSecondClub(): ?int
     {
         return $this->secondClub;
     }
 
-    public function setSecondClub(?string $secondClub): self
+    public function setSecondClub(?int $secondClub): self
     {
         $this->secondClub = $secondClub;
 
@@ -651,6 +656,18 @@ class Member
     public function setZipcode(?int $zipcode): self
     {
         $this->zipcode = $zipcode;
+
+        return $this;
+    }
+
+    public function getMaidenName(): ?string
+    {
+        return $this->maidenName;
+    }
+
+    public function setMaidenName(?string $maidenName): self
+    {
+        $this->maidenName = $maidenName;
 
         return $this;
     }

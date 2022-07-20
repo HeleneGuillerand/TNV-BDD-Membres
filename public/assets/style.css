@@ -1,7 +1,49 @@
 
 nav img{
-    width: 100px;
+    width: 75px;
     border-radius: 50%;
     background-color:aliceblue;
 
+}
+body {
+    color: white;
+}
+
+.home{
+    padding-top: 4em;
+}
+
+.members-recap{
+    width: 30%;
+}
+
+.search{
+    width: 50%;
+}
+nav ul{
+    margin:auto;
+}
+nav ul li {
+    font-size: 1.3em;
+}
+
+.form-control:valid {
+    background-color:  #212529!important;
+    color: lightgray;
+}
+
+.form-control {
+    border-width: 2px; 
+    border-color: grey;
+    background-color: grey;
+    
+}   
+
+.badge-pill {
+    border-radius: 10px!important;
+}
+
+
+#member_lastKnownSeason_help {
+    color: lightgray!important;
 }

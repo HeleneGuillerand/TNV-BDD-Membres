@@ -44,7 +44,7 @@ class AppFixtures extends Fixture
         }
 
         //*Peculiarities
-        $peculiarities = ['Finiada', 'CE Renault', 'Handicape', 'Pokémon'];
+        $peculiarities = ['Finiada', 'CE Renault', 'Handicape', 'Ecole de tir', 'Initiation Adulte','Pokémon'];
         //on créé une liste d'objets peculiarity
         $peculiaritiesList = [];
         //on parcourt le tableau pour créer des objets peculiarity
@@ -83,7 +83,14 @@ class AppFixtures extends Fixture
             $member->setTitle(mt_rand(1,2));
             $member->setLastname($faker->lastName());
             $member->setFirstname($faker->firstName());
-            $member->setPicture($faker->imageUrl(null, 50, 60, 'Member'));
+            //if the member is female, she has 1/3 chances of beeing married/having a maiden name
+            if($member->getTitle()==2){
+                $num = mt_rand(1,3);
+                if($num == 1){
+                    $member->setMaidenName($faker->lastName());
+                }
+            }
+            $member->setPicture('https://picsum.photos/id/'. $faker->numberBetween(1, 100).'/150/200');
             $member->setDateOfBirth(new DateTimeImmutable('-' . mt_rand(8, 70) . ' years'));
             $member->setPlaceOfBirth($faker->city());
             $member->setAddress($faker->departmentName());
@@ -96,6 +103,7 @@ class AppFixtures extends Fixture
             $member->setPouvoirAg($faker->boolean());
             $member->setAttestation($faker->boolean());
             $member->setIsRegistered($faker->boolean());
+            $member->setSecondClub($faker->numberBetween(1,2));
             $member->setFirstRegisteration(new DateTimeImmutable('-' . mt_rand(0, 60) . ' years'));
             $member->setFftNumber($faker->numberBetween(10000000, 99999999));
             $member->setStatus($faker->numberBetween(1,3));

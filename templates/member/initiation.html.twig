@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Initiation FFT{% endblock %}
+
+{% block body %}
+    <h1>Initiation Adulte FFT</h1>
+    <a href="{{ path('app_member_new') }}"class="btn btn-primary float-md-end mb-2">Ajouter un membre</a>
+    {{ include ('_flash_messages.html.twig') }}
+    {{ include ('member/_list.html.twig') }}
+    
+
+    
+{% endblock %}

@@ -1,0 +1,187 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Member{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_member_index') }}" class="btn btn-primary float-end m-2">Retour</a>
+    <a href="{{ path('app_member_edit', {'id': member.id}) }}" class="btn btn-sm btn-warning float-end m-2">
+        <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+    </a>
+    <div class="member-container mt-5 d-flex">
+        <div><img src="{{ member.picture}}"></div>
+        <table class="table table-dark m-5">
+            <tbody>
+                <tr>
+                    <th>Raison sociale</th>
+                    <td>{{ (member.title == 1) ? 'Monsieur' : 'Madame' }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ member.lastname }}</td>
+                </tr>
+                {% if (member.maidenName)%}
+                    <tr>
+                        <th>Nom de jeune fille</th>
+                        <td>{{ member.maidenName }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Prénom</th>
+                    <td>{{ member.firstname }}</td>
+                </tr>
+                <tr>
+                    <th>Date de naissance</th>
+                    <td>{{ member.dateOfBirth ? member.dateOfBirth|date('d-m-Y') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Lieu de naissance</th>
+                    <td>{{ member.placeOfBirth }}</td>
+                </tr>
+                <tr>
+                    <th>Adresse</th>
+                    <td>{{ member.address }}</td>
+                </tr>
+                <tr>
+                    <th>Code postal</th>
+                    <td>{{ member.zipcode }}</td>
+                </tr>
+                <tr>
+                    <th>Ville</th>
+                    <td>{{ member.city }}</td>
+                </tr>
+                <tr>
+                    <th>Téléphone</th>
+                    <td>{{ member.firstPhone }}</td>
+                </tr>
+                {% if (member.secondPhone) %}
+                    <tr>
+                        <th>Téléphone 2</th>
+                        <td>{{ member.secondPhone }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Mobile</th>
+                    <td>{{ member.mobilePhone }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ member.firstEmail }}</td>
+                </tr>
+                {% if (member.secondEmail) %}
+                    <tr>
+                        <th>Email 2</th>
+                        <td>{{ member.secondEmail }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Sponsor</th>
+                    <td>{{ member.Sponsor }}</td>
+                </tr>
+                <tr>
+                    <th>Travail</th>
+                    <td>{{ member.job }}</td>
+                </tr>
+                <tr>
+                    <th>Membre depuis</th>
+                    <td>{{ member.firstRegisteration ? member.firstRegisteration|date('d-m-Y') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Dernière saison</th>
+                    <td>{{ member.lastKnownSeason }}</td>
+                </tr>
+                {% if (member.fftNumber) %}
+                    <tr>
+                        <th>N° Fft</th>
+                        <td>{{ member.fftNumber }}</td>
+                    </tr>
+                {% endif %}
+                {% if (member.fftaNumber) %}
+                    <tr>
+                        <th>N° Ffta</th>
+                        <td>{{ member.fftaNumber }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Second Club</th>
+                    <td>{{ member.secondClub == 2 ? 'Oui' : 'Non' }}</td>
+                </tr>
+                <tr>
+                    <th>Tarif</th>
+                    <td>
+                        {% if member.ratesFFT %}
+                            {% for rate in member.ratesFFT %}
+                                <p>{{ rate.label }}: {{ rate.amount }} €</p>
+                            {% endfor %}
+                        {% endif %}
+                        {#% if member.ratesFFTA %}
+                            {% for rate in member.ratesFFTA %}
+                                <p>{{ rate.label }}: {{ rate.amount }} €</p>
+                            {% endfor %}
+                        {% endif %#}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Donation</th>
+                    <td>{{ member.donation ? member.donation : '-' }} €</td>
+                </tr>
+                <tr>
+                    <th>Total payé</th>
+                    <td>{{ member.totalPayed ? member.totalPayed : '-' }} €</td>
+                </tr>
+                <tr>
+                    <th>A payé</th>
+                    <td>{{ member.isRegistered ? 'Oui' : 'Non' }}</td>
+                </tr>
+                {% if (member.boxes) %}
+                    <tr>
+                        <th>Caisson(s)</th>
+                        <td>
+                            {% for box in member.boxes %}
+                                <p>{{ box.number }}</p>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Status</th>
+                    <td>
+                        {% if (member.status == 1) %}
+                            <span class="badge bg-success">Actif</span>
+                        {% elseif (member.status == 2) %}
+                            <span class="badge bg-warning">Inactif</span>
+                        {% elseif (member.status == 3) %}
+                           <span class="badge bg-danger">Décédé</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Particularités</th>
+                    <td>
+                        {% for peculiarity in member.peculiarities %}
+                            <p>{{ peculiarity.name }}</p>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% if (member.note) %}
+                    <tr>
+                        <th>Note</th>
+                        <td>{{ member.note }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Pouvoir AG reçu</th>
+                    <td>{{ member.pouvoirAg ? 'Oui' : 'Non' }}</td>
+                </tr>
+                <tr>
+                    <th>Attestation nécessaire</th>
+                    <td>{{ member.attestation ? 'Oui' : 'Non' }}</td>
+                </tr>
+                <tr>
+                    <th>Modifié le</th>
+                    <td>{{ member.updatedAt ? member.updatedAt|date('d-m-Y H:i:s') : '-' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {{ include('member/_delete_form.html.twig') }}
+{% endblock %}

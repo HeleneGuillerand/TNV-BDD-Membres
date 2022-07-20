@@ -39,6 +39,132 @@ class MemberRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
+    public function findAllAlphabetical(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
+    public function findAllFFT(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.fftNumber != FALSE')
+            //->setParameter('val', null)
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
+    public function findAllActifFFT(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.fftNumber != FALSE')
+            ->andWhere('m.status = :val')
+            ->setParameter('val', 1)
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
+    public function findAllClub($value): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.secondClub = :val')
+            ->setParameter('val', $value)
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+
+    /**
+     * @return Member[] Returns an array of Member objects 
+     */
+    public function findAllAg($registerationLimit, $birthLimit): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.isRegistered = TRUE')
+            ->andWhere('m.status = 1')
+            ->andWhere('m.firstRegisteration < :registerationLimit')
+            ->setParameter('registerationLimit', $registerationLimit)
+            ->andWhere('m.dateOfBirth < :birthLimit')
+            ->setParameter('birthLimit', $birthLimit)
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
+    public function findAllFFTA(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.fftaNumber != FALSE')
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
+    public function findAllAttestation(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.attestation != TRUE')
+            ->andWhere('m.status = 1')
+            ->andWhere('m.isRegistered = TRUE')
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+    /**
+     * @return Member[] Returns an array of Member objects
+     */
+    public function findByPeculiarity($peculiarity): array
+    {
+        return $this->createQueryBuilder('m')
+            ->innerJoin('m.peculiarities', 'p')
+            ->where('p.id = :peculiarity_id')
+            ->setParameter('peculiarity_id', $peculiarity->getId())
+            ->andWhere('m.status = 1')
+            ->orderBy('m.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
 //    /**
 //     * @return Member[] Returns an array of Member objects
 //     */
