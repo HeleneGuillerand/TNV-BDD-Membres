@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tarif FFTA{% endblock %}
+
+{% block body %}
+    
+    <h1>Tarif FFTA</h1>
+    <a href="{{ path('app_rate_ffta_index') }}" class="btn btn-primary float-end m-2">Retour</a>
+    <a href="{{ path('app_rate_ffta_edit', {'id': rate_ffta.id}) }}" class="btn btn-sm btn-warning float-end m-2">
+        <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+    </a>
+    <table class="table table-dark m-5">
+        <tbody>
+            <tr>
+                <th>Code</th>
+                <td class="text-center">{{ rate_ffta.code }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td class="text-center">{{ rate_ffta.label }}</td>
+            </tr>
+            <tr>
+                <th>Frais d'entrée</th>
+                <td class="text-center">{{ rate_ffta.entryFee }} €</td>
+            </tr>
+            <tr>
+                <th>Cotisation</th>
+                <td class="text-center">{{ rate_ffta.cotisation }} €</td>
+            </tr>
+            <tr>
+                <th>Licence</th>
+                <td class="text-center">{{ rate_ffta.licence }} €</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td class="text-center">{{ rate_ffta.amount }} €</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ include('rate_ffta/_delete_form.html.twig') }}
+{% endblock %}

@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures\Provider;
 
-class RatesProvider
+class RatesFFTProvider
 {
     // Taleau des tarifs FFT
     private $ratesFFT = [
@@ -193,7 +193,7 @@ class RatesProvider
     ];
             
     /**
-     * Retourne un film au hasard
+     * 
      */
     public function getRates()
     {

@@ -197,6 +197,11 @@ class Member
     private $ratesFFT;
 
     /**
+     * @ORM\ManyToMany(targetEntity=RateFFTA::class, inversedBy="members")
+     */
+    private $ratesFFTA;
+
+    /**
      * @ORM\Column(type="smallint")
      * @Assert\NotBlank
      */
@@ -204,7 +209,7 @@ class Member
 
     /**
      * @ORM\Column(type="boolean")
-     * @Assert\NotBlank
+     * 
      */
     private $isRegistered;
 
@@ -242,6 +247,7 @@ class Member
         $this->boxes = new ArrayCollection();
         $this->peculiarities = new ArrayCollection();
         $this->ratesFFT = new ArrayCollection();
+        $this->ratesFFTA = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -626,6 +632,30 @@ class Member
     public function removeRatesFFT(RateFFT $ratesFFT): self
     {
         $this->ratesFFT->removeElement($ratesFFT);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RateFFTA>
+     */
+    public function getRatesFFTA(): Collection
+    {
+        return $this->ratesFFTA;
+    }
+
+    public function addRatesFFTA(RateFFTA $ratesFFTA): self
+    {
+        if (!$this->ratesFFTA->contains($ratesFFTA)) {
+            $this->ratesFFTA[] = $ratesFFTA;
+        }
+
+        return $this;
+    }
+
+    public function removeRatesFFTA(RateFFTA $ratesFFTA): self
+    {
+        $this->ratesFFTA->removeElement($ratesFFTA);
 
         return $this;
     }

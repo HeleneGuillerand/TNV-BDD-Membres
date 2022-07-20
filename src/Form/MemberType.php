@@ -3,8 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Member;
-use App\Entity\Peculiarity;
 use App\Entity\RateFFT;
+use App\Entity\RateFFTA;
+use App\Entity\Peculiarity;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -118,7 +119,17 @@ class MemberType extends AbstractType
                         ->orderBy('r.code', 'ASC');
                 },
             ])
-            //->add('ratesFFTA')
+            ->add('ratesFFTA', EntityType::class, [
+                'class' => RateFFTA::class,
+                'label' => "Tarif FFTA",
+                'choice_label' => 'label',
+                'multiple' => true,
+                'expanded' => true,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('r')
+                        ->orderBy('r.code', 'ASC');
+                },
+            ])
             ->add('donation', NumberType::class,[
                 'label' => "Don",
             ])

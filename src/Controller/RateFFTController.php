@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/rate/f/f/t")
+ * @Route("/rate-fft")
  */
 class RateFFTController extends AbstractController
 {
@@ -67,7 +67,7 @@ class RateFFTController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $rateFFTRepository->add($rateFFT, true);
 
-            return $this->redirectToRoute('app_rate_f_f_t_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_rate_fft_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('rate_fft/edit.html.twig', [
