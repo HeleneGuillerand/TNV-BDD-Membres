@@ -39,6 +39,18 @@ class RateFFTRepository extends ServiceEntityRepository
         }
     }
 
+      /**
+     * @return RateFFT[] Returns an array of RateFFT objects
+     */
+    public function findAllCodeAsc(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->orderBy('r.code', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return RateFFT[] Returns an array of RateFFT objects
 //     */

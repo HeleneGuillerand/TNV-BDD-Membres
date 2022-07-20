@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tarifs FFT{% endblock %}
+
+{% block body %}
+    <h1>Tarifs FFT</h1>
+    <a href="{{ path('app_rate_fft_new') }}"class="btn btn-primary float-md-end mb-2">Ajouter un tarif</a>
+    {{ include ('_flash_messages.html.twig') }}
+
+    <table class="table table-dark table-striped table-hover">
+        <thead class="text-center">
+            <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Frais d'entrée</th>
+                <th>Cotisation</th>
+                <th>Licence</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+        {% for rate_fft in rates_fft %}
+            <tr>
+                <td>{{ rate_fft.code }}</td>
+                <td>{{ rate_fft.label }}</td>
+                <td>{{ rate_fft.entryFee }} €</td>
+                <td>{{ rate_fft.cotisation }} €</td>
+                <td>{{ rate_fft.licence }} €</td>
+                <td>{{ rate_fft.amount }} €</td>
+                <td>
+                    <a href="{{ path('app_rate_fft_show', {'id': rate_fft.id}) }}"class="btn btn-sm btn-primary">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{ path('app_rate_fft_edit', {'id': rate_fft.id}) }}"class="btn btn-sm btn-warning mx-1">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Pas de tarifs enregistrés</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

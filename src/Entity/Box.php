@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use App\Repository\BoxRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=BoxRepository::class)
+ * @UniqueEntity("number",
+ * message="Le numéro est déjà utilisé")
  */
 class Box
 {
@@ -19,11 +23,13 @@ class Box
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotBlank
      */
     private $number;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\NotBlank
      */
     private $status;
 
