@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Particularité{% endblock %}
+
+{% block body %}
+    <h1>{{ peculiarity.name }}</h1>
+    <a href="{{ path('app_peculiarity_index') }}" class="btn btn-primary float-end m-2">Retour</a>
+    <a href="{{ path('app_peculiarity_edit', {'id': peculiarity.id}) }}" class="btn btn-sm btn-warning float-end m-2">
+        <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+    </a>
+    <div class="mt-5 container">
+        <h3>Membre(s)</h3>
+        <ul class="list-group-dark list-group-flush list-group-numbered " >
+            {% for member in peculiarity.members %}
+                <li class="list-group-item"><a href="{{ path('app_member_show', {'id': member.id}) }}">{{ member.lastname }} {{ member.firstname }}</a></li>
+            {% else %}
+                <li>Pas de membre concerné</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    {{ include('peculiarity/_delete_form.html.twig') }}
+{% endblock %}

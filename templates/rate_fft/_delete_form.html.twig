@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('app_rate_fft_delete', {'id': rate_fft.id}) }}" onsubmit="return confirm('Etes vous sûr devouloir supprimer ce tarif?');">
+<form method="post" action="{{ path('app_rate_fft_delete', {'id': rate_fft.id}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer ce tarif?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rate_fft.id) }}">
     <button class="btn btn-danger">
         <i class="fa fa-trash-o"></i>

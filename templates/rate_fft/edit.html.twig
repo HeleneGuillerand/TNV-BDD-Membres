@@ -4,10 +4,10 @@
 
 {% block body %}
     <a href="{{ path('app_rate_fft_index') }}" class="btn btn-primary float-end m-2">Retour</a>
-    <h1 class="mb-4">Modifier le tarif</h1>
+    <h1 class="mb-5">Modifier le tarif</h1>
+    <div class="col-md-10 mx-auto">
+        {{ include('rate_fft/_form.html.twig', {'button_label': 'Modifier'}) }}
+        {{ include('rate_fft/_delete_form.html.twig') }}
+    </div>
 
-    {{ include('rate_fft/_form.html.twig', {'button_label': 'Modifier'}) }}
-
-
-    {{ include('rate_fft/_delete_form.html.twig') }}
 {% endblock %}

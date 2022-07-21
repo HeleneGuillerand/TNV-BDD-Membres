@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Member{% endblock %}
+{% block title %}Membre{% endblock %}
 
 {% block body %}
     <a href="{{ path('app_member_index') }}" class="btn btn-primary float-end m-2">Retour</a>
@@ -105,23 +105,28 @@
                     <th>Second Club</th>
                     <td>{{ member.secondClub == 2 ? 'Oui' : 'Non' }}</td>
                 </tr>
-                {% if member.ratesFFT %}
+                {% if (member.ratesFFT) %}
                     <tr>
                         <th>Tarif(s) FFT</th>
                         <td>
-                            {% for rate in member.ratesFFT %}
-                                <p>{{ rate.label }}: {{ rate.amount }} €</p>
-                            {% endfor %}
+                            <ul class="list-group-dark" >
+                                {% for rate in member.ratesFFT %}
+                                    <li class="list-group-item">{{ rate.label }} : {{ rate.amount }} €</li>
+                                {% endfor %}
+                            </ul>
                         </td>
                     </tr>
                 {% endif %}
-                {% if member.ratesFFTA %}
+
+                {% if (member.ratesFFTA) %}
                     <tr>
                         <th>Tarif(s) FFTA</th>
                         <td>
-                            {% for rate in member.ratesFFTA %}
-                                <p>{{ rate.label }}: {{ rate.amount }} €</p>
-                            {% endfor %}
+                            <ul class="list-group-dark" >
+                                {% for rate in member.ratesFFTA %}
+                                    <li class="list-group-item">{{ rate.label }}: {{ rate.amount }} €</li>
+                                {% endfor %}
+                            </ul>
                         </td>
                     </tr>
                 {% endif %}
@@ -162,9 +167,11 @@
                 <tr>
                     <th>Particularités</th>
                     <td>
-                        {% for peculiarity in member.peculiarities %}
-                            <p>{{ peculiarity.name }}</p>
-                        {% endfor %}
+                        <ul class="list-group-dark" >
+                            {% for peculiarity in member.peculiarities %}
+                                <li class="list-group-item"><a href="{{ path('app_peculiarity_show', {'id': peculiarity.id}) }}">{{ peculiarity.name }}</a></li>
+                            {% endfor %}
+                        </ul>
                     </td>
                 </tr>
                 {% if (member.note) %}

@@ -39,6 +39,17 @@ class PeculiarityRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Peculiarity[] Returns an array of Peculiarity objects
+     */
+    public function findAllNameAsc(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.name', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 //    /**
 //     * @return Peculiarity[] Returns an array of Peculiarity objects
 //     */

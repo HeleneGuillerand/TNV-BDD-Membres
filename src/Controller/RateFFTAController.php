@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\RateFFTA;
-use App\Form\RateFFTTAype;
+use App\Form\RateFFTAType;
 use App\Repository\RateFFTARepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -61,7 +61,7 @@ class RateFFTAController extends AbstractController
      */
     public function edit(Request $request, RateFFTA $rateFFTA, RateFFTARepository $rateFFTARepository): Response
     {
-        $form = $this->createForm(RateFFTType::class, $rateFFTA);
+        $form = $this->createForm(RateFFTAType::class, $rateFFTA);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
