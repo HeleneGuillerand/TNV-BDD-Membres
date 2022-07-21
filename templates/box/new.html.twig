@@ -3,9 +3,10 @@
 {% block title %}Caisson Création{% endblock %}
 
 {% block body %}
-    <h1>Ajouter un caisson</h1>
-
-    {{ include('box/_form.html.twig') }}
-
-    <a href="{{ path('app_box_index') }}"class="btn btn-primary m-2">Retour</a>
+    <a href="{{ path('app_box_index') }}"class="btn btn-primary float-end m-2">Retour</a>
+    <h1 class="mb-5">Ajouter un caisson</h1>
+    <div class="col-md-10 mx-auto">
+        {{ include('box/_form.html.twig') }}
+    </div>
+    
 {% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Particularités{% endblock %}
+
+{% block body %}
+    <h1>Particularités</h1>
+    <a href="{{ path('app_peculiarity_new') }}"class="btn btn-primary float-md-end mb-2">Ajouter une particularité</a>
+    {{ include ('_flash_messages.html.twig') }}
+
+    <table class="table table-dark table-striped table-hover text-center">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for peculiarity in peculiarities %}
+            <tr>
+                <td>{{ peculiarity.name }}</td>
+                <td>
+                    <a href="{{ path('app_peculiarity_show', {'id': peculiarity.id}) }}"class="btn btn-sm btn-primary">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{ path('app_peculiarity_edit', {'id': peculiarity.id}) }}"class="btn btn-sm btn-warning mx-1">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Pas de particularités enregistrées</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Particularité Edition{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_rate_fft_index') }}" class="btn btn-primary float-end m-2">Retour</a>
+    <h1 class="mb-5">Modifier la particularité</h1>
+    <div class="col-md-10 mx-auto">
+        {{ include('peculiarity/_form.html.twig', {'button_label': 'Modifier'}) }}
+        {{ include('peculiarity/_delete_form.html.twig') }}
+    </div>
+
+{% endblock %}

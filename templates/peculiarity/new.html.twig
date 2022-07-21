@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Particularité Création{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_peculiarity_index') }}"class="btn btn-primary float-md-end mb-2">Retour</a>
+    <h1 class="mb-5">Ajouter une particularité</h1>
+    <div class="col-md-10 mx-auto">
+        {{ include('peculiarity/_form.html.twig') }}
+        
+    </div>
+{% endblock %}
