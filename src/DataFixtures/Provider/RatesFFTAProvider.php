@@ -203,7 +203,7 @@ class RatesFFTAProvider
             'label' => 'Senior Podium Individuel France & Moniteur 2eme Club',
             'entryFee' => 0,
             'cotisation' => 42,
-            'licence' => 42,
+            'licence' => 0,
             'amount' => 42
         ],
         [
