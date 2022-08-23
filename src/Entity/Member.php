@@ -214,17 +214,17 @@ class Member
     private $isRegistered;
 
     /**
-     * @ORM\Column(type="string", length=12, nullable=true)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $firstPhone;
 
     /**
-     * @ORM\Column(type="string", length=12, nullable=true)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $secondPhone;
 
     /**
-     * @ORM\Column(type="string", length=12, nullable=true)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $mobilePhone;
 
