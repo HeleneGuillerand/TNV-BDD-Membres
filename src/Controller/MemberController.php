@@ -240,4 +240,55 @@ class MemberController extends AbstractController
         //TODO check what happends with box upon member deletion
         return $this->redirectToRoute('app_member_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    // /**
+    // * @Route("/download/{list}", name="app_member_download")
+    // */
+    //public function download($memberslist): Response
+    //{
+    //    //we transform our objects list into a csv file
+    //    $rows = array();
+    //    foreach ($memberslist as $member) {
+    //        $data = array(
+    //            $member->getTitle(),
+    //            $member->getLastname(),
+    //            $member->getMaidenName(),
+    //            $member->getFirstname(),
+    //            $member->getDateOfBirth()->format('d/m/Y'),
+    //            $member->getPlaceOfBirth(),
+    //            $member->getAddress(),
+    //            $member->getZipcode(),
+    //            $member->getCity(),
+    //            $member->getFirstEmail(),
+    //            $member->getSecondEmail(),
+    //            $member->getFirstPhone(),
+    //            $member->getSecondPhone(),
+    //            $member->getMobilePhone(),
+    //            $member->getSponsor(),
+    //            $member->getJob(),
+    //            $member->getpouvoirAg(),
+    //            $member->getDonation(),
+    //            $member->getTotalPayed(),
+    //            $member->getIsRegistered(),
+    //            $member->getUpdatedAt()->format('d/m/Y'),
+    //            $member->getFirstRegisteration()->format('d/m/Y'),
+    //            $member->getFftNumber(),
+    //            $member->getFftaNumber(),
+    //            $member->getLastKnownSeason(),
+    //            $member->getAttestation(),
+    //            $member->getSecondClub(),
+    //            $member->getStatus(),
+    //            $member->getNote()
+    //        );
+    //
+    //        $rows[] = implode(',', $data);
+    //    }
+    //
+    //    $content = implode("\n", $rows);
+    //    $response = new Response($content);
+    //    $response->headers->set('Content-Type', 'text/csv');
+//
+    //    return $response;
+    //    
+    //}
 }
